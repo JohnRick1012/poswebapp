@@ -55,4 +55,17 @@ public class ProductServiceImpl implements ProductService {
                                     .build());
                 });
     }
+
+    @Override
+    public Mono<ProductResponseDto> getProductId(Long productId) {
+        return productRepository.findByProductId(productId)
+                .map(product -> {
+                    ProductResponseDto responseDto = productMapper.productToProductResponseDto(product);
+                    responseDto.setStatus(ResponseStatus.builder()
+                                    .code(successResponseProperties.getCode())
+                                    .description(successResponseProperties.getDescription())
+                                    .build());
+                    return responseDto;
+                });
+    }
 }

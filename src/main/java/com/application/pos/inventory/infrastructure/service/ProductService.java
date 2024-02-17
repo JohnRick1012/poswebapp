@@ -6,4 +6,5 @@ import reactor.core.publisher.Mono;
 
 public interface ProductService {
     Mono<ProductResponseDto> saveProduct(ProductDto productDto);
+    Mono<ProductResponseDto> getProductId(Long productId);
 }
